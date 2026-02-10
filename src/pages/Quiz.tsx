@@ -46,7 +46,6 @@ export default function Quiz() {
     if (step < TOTAL_STEPS) {
       setStep(step + 1);
     } else {
-      // Finish
       setSector(selectedSector!);
       setProfession(selectedProfession!);
       setExperienceLevel(selectedExperience!);
@@ -54,7 +53,6 @@ export default function Quiz() {
       setRequiresAdvancedATS(ats);
       setQuizAnswers({ fullName, email });
       setQuizCompleted(true);
-
       track('quiz_completed', {
         sector: selectedSector!,
         profession: selectedProfession!,
@@ -62,7 +60,6 @@ export default function Quiz() {
         language,
         requiresAdvancedATS: ats,
       });
-
       navigate('/preview');
     }
   };
@@ -79,8 +76,8 @@ export default function Quiz() {
         {Array.from({ length: TOTAL_STEPS }, (_, i) => (
           <div
             key={i}
-            className={`h-1.5 flex-1 rounded-full transition-colors ${
-              i < step ? 'gradient-hero' : 'bg-muted'
+            className={`h-2 flex-1 rounded-full transition-colors ${
+              i < step ? 'bg-accent' : 'bg-muted'
             }`}
           />
         ))}
@@ -93,13 +90,13 @@ export default function Quiz() {
             <button
               key={sector}
               onClick={() => { setSelectedSector(sector); setSelectedProfession(null); }}
-              className={`flex items-center gap-3 rounded-lg border p-4 text-left text-sm font-medium transition-all ${
+              className={`flex items-center gap-3 rounded-xl border p-4 text-left text-sm font-medium transition-all ${
                 selectedSector === sector
-                  ? 'border-primary bg-primary/5 text-foreground'
-                  : 'border-border bg-card text-muted-foreground hover:border-primary/30 hover:text-foreground'
+                  ? 'border-accent bg-accent/5 text-foreground shadow-soft'
+                  : 'border-border bg-card text-muted-foreground hover:border-accent/40 hover:text-foreground'
               }`}
             >
-              {selectedSector === sector && <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />}
+              {selectedSector === sector && <CheckCircle2 className="h-4 w-4 shrink-0 text-accent" />}
               <span>{sector}</span>
             </button>
           ))}
@@ -113,13 +110,13 @@ export default function Quiz() {
             <button
               key={prof}
               onClick={() => setSelectedProfession(prof)}
-              className={`flex items-center gap-3 rounded-lg border p-4 text-left text-sm font-medium transition-all ${
+              className={`flex items-center gap-3 rounded-xl border p-4 text-left text-sm font-medium transition-all ${
                 selectedProfession === prof
-                  ? 'border-primary bg-primary/5 text-foreground'
-                  : 'border-border bg-card text-muted-foreground hover:border-primary/30 hover:text-foreground'
+                  ? 'border-accent bg-accent/5 text-foreground shadow-soft'
+                  : 'border-border bg-card text-muted-foreground hover:border-accent/40 hover:text-foreground'
               }`}
             >
-              {selectedProfession === prof && <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />}
+              {selectedProfession === prof && <CheckCircle2 className="h-4 w-4 shrink-0 text-accent" />}
               <span>{prof}</span>
             </button>
           ))}
@@ -133,13 +130,13 @@ export default function Quiz() {
             <button
               key={level}
               onClick={() => setSelectedExperience(level)}
-              className={`flex items-center gap-3 rounded-lg border p-4 text-left text-sm font-medium transition-all ${
+              className={`flex items-center gap-3 rounded-xl border p-4 text-left text-sm font-medium transition-all ${
                 selectedExperience === level
-                  ? 'border-primary bg-primary/5 text-foreground'
-                  : 'border-border bg-card text-muted-foreground hover:border-primary/30 hover:text-foreground'
+                  ? 'border-accent bg-accent/5 text-foreground shadow-soft'
+                  : 'border-border bg-card text-muted-foreground hover:border-accent/40 hover:text-foreground'
               }`}
             >
-              {selectedExperience === level && <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />}
+              {selectedExperience === level && <CheckCircle2 className="h-4 w-4 shrink-0 text-accent" />}
               <span>{level}</span>
             </button>
           ))}
@@ -151,11 +148,11 @@ export default function Quiz() {
         <div className="space-y-4">
           <div>
             <label className="mb-1.5 block text-sm font-medium text-foreground">{t('quiz.fullname', language)}</label>
-            <Input value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="John Doe" />
+            <Input value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="John Doe" className="rounded-xl" />
           </div>
           <div>
             <label className="mb-1.5 block text-sm font-medium text-foreground">{t('quiz.email', language)}</label>
-            <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="john@example.com" />
+            <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="john@example.com" className="rounded-xl" />
           </div>
         </div>
       )}
@@ -168,11 +165,12 @@ export default function Quiz() {
           variant="outline"
           onClick={() => setStep(Math.max(1, step - 1))}
           disabled={step === 1}
+          className="rounded-xl"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
           {t('quiz.back', language)}
         </Button>
-        <Button onClick={handleNext} className="gradient-hero border-0 text-primary-foreground hover:opacity-90">
+        <Button onClick={handleNext} className="bg-accent text-accent-foreground border-0 rounded-xl hover:opacity-90">
           {step === TOTAL_STEPS ? t('quiz.finish', language) : t('quiz.next', language)}
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>

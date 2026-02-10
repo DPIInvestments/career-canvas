@@ -12,15 +12,15 @@ export function LanguageSelector() {
   const { language, setLanguage } = useUserStore();
 
   return (
-    <div className="flex items-center gap-1 rounded-lg border border-border bg-card p-0.5">
+    <div className="flex items-center gap-0.5 rounded-xl border border-border bg-card p-0.5">
       <Globe className="ml-2 h-3.5 w-3.5 text-muted-foreground" />
       {languages.map(({ code, label }) => (
         <button
           key={code}
           onClick={() => setLanguage(code)}
-          className={`rounded-md px-2.5 py-1 text-xs font-medium transition-all ${
+          className={`rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all ${
             language === code
-              ? 'bg-primary text-primary-foreground'
+              ? 'bg-navy text-beige'
               : 'text-muted-foreground hover:text-foreground'
           }`}
         >

@@ -19,7 +19,7 @@ export default function Preview() {
       <div className="container max-w-2xl py-20 text-center">
         <h1 className="mb-4 text-2xl font-bold text-foreground">{t('preview.title', language)}</h1>
         <p className="mb-6 text-muted-foreground">{t('dash.no_resume', language)}</p>
-        <Button asChild className="gradient-hero border-0 text-primary-foreground">
+        <Button asChild className="bg-accent text-accent-foreground border-0 rounded-xl">
           <Link to="/quiz">{t('nav.quiz', language)}</Link>
         </Button>
       </div>
@@ -34,11 +34,11 @@ export default function Preview() {
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-2xl font-bold text-foreground">{t('preview.title', language)}</h1>
         <div className="flex gap-2">
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" className="rounded-xl">
             <Edit className="mr-2 h-3.5 w-3.5" />
             {t('preview.edit', language)}
           </Button>
-          <Button size="sm" className="gradient-hero border-0 text-primary-foreground">
+          <Button size="sm" className="bg-accent text-accent-foreground border-0 rounded-xl">
             <Download className="mr-2 h-3.5 w-3.5" />
             {t('preview.download', language)}
           </Button>
@@ -46,7 +46,7 @@ export default function Preview() {
       </div>
 
       {/* ATS Notice */}
-      <div className={`mb-6 flex items-start gap-3 rounded-lg border p-4 text-sm ${
+      <div className={`mb-6 flex items-start gap-3 rounded-xl border p-4 text-sm ${
         requiresAdvancedATS
           ? 'border-accent/30 bg-accent/5 text-foreground'
           : 'border-primary/20 bg-primary/5 text-foreground'
@@ -56,15 +56,13 @@ export default function Preview() {
       </div>
 
       {/* Resume Mock */}
-      <div className="rounded-xl border border-border bg-card p-8 shadow-card">
-        {/* Header */}
+      <div className="rounded-2xl border border-border bg-card p-8 shadow-card">
         <div className="mb-6 border-b border-border pb-6">
           <h2 className="text-2xl font-bold text-foreground">{name}</h2>
           <p className="text-muted-foreground">{profession} • {sector}</p>
           <p className="text-sm text-muted-foreground">{email} • New York, NY • linkedin.com/in/{name.toLowerCase().replace(' ', '')}</p>
         </div>
 
-        {/* Summary */}
         <div className="mb-6">
           <h3 className="mb-2 text-sm font-bold uppercase tracking-wider text-primary">{t('preview.summary', language)}</h3>
           <p className="text-sm leading-relaxed text-muted-foreground">
@@ -74,7 +72,6 @@ export default function Preview() {
           </p>
         </div>
 
-        {/* Experience */}
         <div className="mb-6">
           <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-primary">{t('preview.experience', language)}</h3>
           <div className="space-y-4">
@@ -104,7 +101,6 @@ export default function Preview() {
           </div>
         </div>
 
-        {/* Education */}
         <div className="mb-6">
           <h3 className="mb-2 text-sm font-bold uppercase tracking-wider text-primary">{t('preview.education', language)}</h3>
           <div className="flex items-center justify-between">
@@ -116,12 +112,11 @@ export default function Preview() {
           </div>
         </div>
 
-        {/* Skills */}
         <div>
           <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-primary">{t('preview.skills', language)}</h3>
           <div className="flex flex-wrap gap-2">
             {['Leadership', 'Strategic Planning', 'Data Analysis', 'Project Management', 'Cross-functional Collaboration', 'Stakeholder Management'].map((skill) => (
-              <span key={skill} className="rounded-md bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground">
+              <span key={skill} className="rounded-lg bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground">
                 {skill}
               </span>
             ))}
